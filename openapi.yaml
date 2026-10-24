@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: Flask JSON serialization demo
+  version: 1.0.0
+  description: |
+    Exercise generated models and serializers for Connexion 2 and 3.
+    Variant 3 preserves HTTP dates and string Decimal output, even when the schema
+    declares date/date-time/number. See README.md and the expected JSON snapshots.
+servers:
+  - url: /api
+paths:
+  /demo/runtime:
+    get:
+      operationId: get_runtime
+      x-openapi-router-controller: demo_controller
+      responses:
+        '200':
+          description: Active versions, adapter, and configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeInfo'
+  /demo/model:
+    get:
+      operationId: get_model
+      x-openapi-router-controller: demo_controller
+      responses:
+        '200':
+          description: Generated model with representative properties and types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemoItem'
+  /demo/list:
+    get:
+      operationId: get_list
+      x-openapi-router-controller: demo_controller
+      responses:
+        '200':
+          description: List of generated models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DemoItem'
+  /demo/map:
+    get:
+      operationId: get_map
+      x-openapi-router-controller: demo_controller
+      responses:
+        '200':
+          description: Dictionary containing generated models
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/DemoItem'
+  /demo/nulls:
+    get:
+      operationId: get_nulls
+      x-openapi-router-controller: demo_controller
+      responses:
+        '200':
+          description: Omit or include None; preserve false, zero, and empty strings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NullsExample'
+components:
+  schemas:
+    DemoChild:
+      type: object
+      required: [code]
+      properties:
+        code:
+          type: string
+        comment:
+          type: string
+          nullable: true
+    DemoItem:
+      type: object
+      required: [id, displayName, child, children, lookup, createdAt, birthday, amount, token]
+      properties:
+        id:
+          type: integer
+        displayName:
+          type: string
+          description: Becomes display_name in Python; must be displayName in JSON
+        note:
+          type: string
+          nullable: true
+        child:
+          $ref: '#/components/schemas/DemoChild'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DemoChild'
+        lookup:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/DemoChild'
+        createdAt:
+          type: string
+          format: date-time
+        birthday:
+          type: string
+          format: date
+        amount:
+          type: number
+          format: double
+          description: The handler returns Decimal('12.50'); C2 emits a number and C3 a string
+        token:
+          type: string
+          format: uuid
+    NullsExample:
+      type: object
+      properties:
+        optionalLabel:
+          type: string
+          nullable: true
+        enabled:
+          type: boolean
+        count:
+          type: integer
+        label:
+          type: string
+        child:
+          $ref: '#/components/schemas/DemoChild'
+    RuntimeInfo:
+      type: object
+      properties:
+        connexionVersion:
+          type: string
+        flaskVersion:
+          type: string
+        adapter:
+          type: string
+        includeNulls:
+          type: boolean

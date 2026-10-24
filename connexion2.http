@@ -1,0 +1,45 @@
+# VS Code REST Client: click Send Request above each call.
+# Start: ./run.sh 2
+# Automated verification: python3 verify.py --mode 2
+# Complete expected bodies: expected/connexion2.json -> withoutNulls (default).
+# To include nulls, stop the server and restart: ./run.sh 2 --include-nulls
+# Then compare with withNulls and run verify.py --mode 2 --include-nulls.
+@baseUrl = http://127.0.0.1:8082/api
+
+### Active versions and adapter: JSONProvider, includeNulls=false
+# @name c2_runtime
+GET {{baseUrl}}/demo/runtime
+Accept: application/json
+
+### Model: renamed properties, nested models, datetime/date/Decimal/UUID
+# Expected: 200 application/json.
+# createdAt="2024-04-05T06:07:08+00:00", birthday="2024-04-05", amount=12.5.
+# note and child.comment are omitted by default.
+# Complete body: expected/connexion2.json -> withoutNulls.model
+# @name c2_model
+GET {{baseUrl}}/demo/model
+Accept: application/json
+
+### List: [expected model]
+# @name c2_list
+GET {{baseUrl}}/demo/list
+Accept: application/json
+
+### Dictionary: {"primary": expected model}
+# @name c2_map
+GET {{baseUrl}}/demo/map
+Accept: application/json
+
+### Nulls: false, 0, and "" remain; optionalLabel and child.comment are omitted
+# Complete body: expected/connexion2.json -> withoutNulls.nulls
+# @name c2_nulls
+GET {{baseUrl}}/demo/nulls
+Accept: application/json
+
+### OpenAPI document loaded by the generated application
+# @name c2_openapi
+GET {{baseUrl}}/openapi.json
+Accept: application/json
+
+### Swagger UI: expected 200 text/html; open the URL in a browser to interact
+GET {{baseUrl}}/ui/

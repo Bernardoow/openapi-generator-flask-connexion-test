@@ -1,0 +1,71 @@
+{
+  "withoutNulls": {
+    "model": {
+      "id": 101,
+      "displayName": "Modelo gerado",
+      "child": {
+        "code": "child-1"
+      },
+      "children": [
+        {
+          "code": "list-1",
+          "comment": "na lista"
+        }
+      ],
+      "lookup": {
+        "first": {
+          "code": "map-1"
+        }
+      },
+      "createdAt": "2024-04-05T06:07:08+00:00",
+      "birthday": "2024-04-05",
+      "amount": 12.5,
+      "token": "12345678-1234-5678-1234-567812345678"
+    },
+    "nulls": {
+      "enabled": false,
+      "count": 0,
+      "label": "",
+      "child": {
+        "code": "child-null"
+      }
+    }
+  },
+  "withNulls": {
+    "model": {
+      "id": 101,
+      "displayName": "Modelo gerado",
+      "child": {
+        "code": "child-1",
+        "comment": null
+      },
+      "children": [
+        {
+          "code": "list-1",
+          "comment": "na lista"
+        }
+      ],
+      "lookup": {
+        "first": {
+          "code": "map-1",
+          "comment": null
+        }
+      },
+      "createdAt": "2024-04-05T06:07:08+00:00",
+      "birthday": "2024-04-05",
+      "amount": 12.5,
+      "token": "12345678-1234-5678-1234-567812345678",
+      "note": null
+    },
+    "nulls": {
+      "enabled": false,
+      "count": 0,
+      "label": "",
+      "child": {
+        "code": "child-null",
+        "comment": null
+      },
+      "optionalLabel": null
+    }
+  }
+}

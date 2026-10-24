@@ -1,0 +1,71 @@
+{
+  "withoutNulls": {
+    "model": {
+      "id": 101,
+      "displayName": "Modelo gerado",
+      "child": {
+        "code": "child-1"
+      },
+      "children": [
+        {
+          "code": "list-1",
+          "comment": "na lista"
+        }
+      ],
+      "lookup": {
+        "first": {
+          "code": "map-1"
+        }
+      },
+      "createdAt": "Fri, 05 Apr 2024 06:07:08 GMT",
+      "birthday": "Fri, 05 Apr 2024 00:00:00 GMT",
+      "amount": "12.50",
+      "token": "12345678-1234-5678-1234-567812345678"
+    },
+    "nulls": {
+      "enabled": false,
+      "count": 0,
+      "label": "",
+      "child": {
+        "code": "child-null"
+      }
+    }
+  },
+  "withNulls": {
+    "model": {
+      "id": 101,
+      "displayName": "Modelo gerado",
+      "child": {
+        "code": "child-1",
+        "comment": null
+      },
+      "children": [
+        {
+          "code": "list-1",
+          "comment": "na lista"
+        }
+      ],
+      "lookup": {
+        "first": {
+          "code": "map-1",
+          "comment": null
+        }
+      },
+      "createdAt": "Fri, 05 Apr 2024 06:07:08 GMT",
+      "birthday": "Fri, 05 Apr 2024 00:00:00 GMT",
+      "amount": "12.50",
+      "token": "12345678-1234-5678-1234-567812345678",
+      "note": null
+    },
+    "nulls": {
+      "enabled": false,
+      "count": 0,
+      "label": "",
+      "child": {
+        "code": "child-null",
+        "comment": null
+      },
+      "optionalLabel": null
+    }
+  }
+}
